@@ -67,8 +67,4 @@ public class ParserService {
             output.replaceSuccess();
         }
     }
-
-    public boolean isAlpha(String string) {
-        return string.matches("[a-zA-Z]");
-    }
 }
