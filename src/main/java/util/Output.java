@@ -2,7 +2,15 @@ package util;
 
 public class Output {
     public void description() {
-        System.out.println("Please choice  mode:\n 1 Find string in the file and count them\n 2 Find string in the file and replace them");
+        System.out.println("Please choice  mode:\n 1 Find string in the file and count them\n 2 Find string in the file and replace them\n --------------------------------------------");
+    }
+
+    public void wrongMode() {
+        System.out.println("You select nonexistent mode. Please enter y - yes, if you want to try again");
+    }
+
+    public void fileName() {
+        System.out.println("Enter the file name");
     }
 
     public void fileError() {
@@ -14,14 +22,15 @@ public class Output {
     }
 
     public void countString() {
-        System.out.println("Enter file name and string for search");
+        System.out.println("Enter string for search");
     }
 
     public void stringInFile(int number) {
         System.out.println("File has " + number + " search string");
     }
+
     public void replaceString() {
-        System.out.println("Enter file name string for search and replace");
+        System.out.println("Enter string for search and replace");
     }
 
     public void replaceError() {
