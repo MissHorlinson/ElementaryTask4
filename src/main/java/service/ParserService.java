@@ -1,14 +1,13 @@
 package service;
 
+import com.sun.istack.internal.Nullable;
 import util.*;
 import java.io.*;
 
 public class ParserService {
-    private Input      input = new Input();
-    private Output     output = new Output();
     private Validator  validator = new Validator();
 
-
+    @Nullable
     public String readFromFile(File file) throws IOException {
         try {
             FileReader fileReader = new FileReader(file);
@@ -20,6 +19,7 @@ public class ParserService {
         }
     }
 
+    @Nullable
     public BufferedWriter writeToFile(File file) throws IOException {
         try {
             FileWriter fileWriter = new FileWriter(file);
@@ -44,27 +44,22 @@ public class ParserService {
         return true;
     }
 
-    public void countString(File file) throws IOException {
+    public int countString(File file, String findString) throws IOException {
         String[] fileContent = validator.fileContent(readFromFile(file));
-        output.countString();
-        String findString = input.getString();
         int count = 0;
         for (int i = 0; i < fileContent.length; i++) {
             if (fileContent[i].equals(findString)) {
                 count++;
             }
         }
-        output.stringInFile(count);
+        return count;
     }
 
-    public void replaceString(File file) throws IOException {
-        output.replaceString();
-        String findString = input.getString();
-        String replaceString = input.getString();
+    public boolean replaceString(File file, String findString, String replaceString) throws IOException {
         if (!dataToFile(file, readFromFile(file).replaceAll(findString, replaceString))) {
-            output.replaceError();
+           return false;
         } else {
-            output.replaceSuccess();
+            return true;
         }
     }
 }

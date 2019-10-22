@@ -16,13 +16,15 @@ public class ParserController {
         output.description();
             if (input.getString().equals("1")) {
                 runCounting();
-            } else if (input.getString().equals("2")) {
-                runReplace();
-            } else {
-                output.wrongMode();
-                if(!continueRequest(input.getString()))
-                    break;
+                break;
             }
+            if (input.getString().equals("2")) {
+                runReplace();
+                break;
+            }
+            output.wrongMode();
+            if(!continueRequest(input.getString()))
+                break;
         }
     }
 
@@ -38,9 +40,15 @@ public class ParserController {
         model = new ParserModel(getFile());
         if (validator.fileExist(model.getFile())) {
             if(validator.emptyFile(model.getFile())) {
-                service.countString(model.getFile());
+                count();
             }
         }
+    }
+
+    public void count() throws IOException {
+        output.countString();
+        String findString = input.getString();
+        output.stringInFile(service.countString(model.getFile(), findString));
     }
 
     public void runReplace() throws IOException {
@@ -48,9 +56,17 @@ public class ParserController {
         model = new ParserModel(getFile());
         if (validator.fileExist(model.getFile())) {
             if(validator.emptyFile(model.getFile())) {
-                service.replaceString(model.getFile());
+                replace();
             }
         }
+    }
+
+    public void replace() throws IOException {
+        output.replaceString();
+        if (service.replaceString(model.getFile(), input.getString(), input.getString())) {
+            output.replaceSuccess();
+        } else
+            output.replaceError();
     }
 
     public boolean continueRequest(String answer) {
