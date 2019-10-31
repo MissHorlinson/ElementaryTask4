@@ -11,15 +11,26 @@ public class ParserController {
     private ParserService service = new ParserService();
     private ParserModel   model;
 
+    public void run() throws IOException {
+        output.fileName();
+        model = new ParserModel(getFile());
+        if (validator.fileExist(model.getFile())) {
+            if(validator.emptyFile(model.getFile())) {
+                choiceMode();
+            } else { output.fileError(); }
+        } else { output.emptyFile(); }
+    }
+
     public void choiceMode() throws IOException {
         while (true) {
         output.description();
-            if (input.getString().equals("1")) {
-                runCounting();
+        String mode = input.getString();
+            if (mode.equals("1")) {
+                count();
                 break;
             }
-            if (input.getString().equals("2")) {
-                runReplace();
+            if (mode.equals("2")) {
+                replace();
                 break;
             }
             output.wrongMode();
@@ -29,36 +40,15 @@ public class ParserController {
     }
 
     public File getFile() {
-        //  C://Users//Maria//Downloads//test.txt
+        // C://Users//Maria//IdeaProjects//ElementaryTask4//test.txt
         File file = new File(input.getString());
         return file;
-    }
-
-
-    public void runCounting() throws IOException {
-        output.fileName();
-        model = new ParserModel(getFile());
-        if (validator.fileExist(model.getFile())) {
-            if(validator.emptyFile(model.getFile())) {
-                count();
-            }
-        }
     }
 
     public void count() throws IOException {
         output.countString();
         String findString = input.getString();
         output.stringInFile(service.countString(model.getFile(), findString));
-    }
-
-    public void runReplace() throws IOException {
-        output.fileName();
-        model = new ParserModel(getFile());
-        if (validator.fileExist(model.getFile())) {
-            if(validator.emptyFile(model.getFile())) {
-                replace();
-            }
-        }
     }
 
     public void replace() throws IOException {

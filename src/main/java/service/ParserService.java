@@ -6,6 +6,7 @@ import java.io.*;
 
 public class ParserService {
     private Validator  validator = new Validator();
+    private Output output = new Output();
 
     @Nullable
     public String readFromFile(File file) throws IOException {
@@ -14,7 +15,7 @@ public class ParserService {
             BufferedReader bufferedReader = new BufferedReader(fileReader);
             return bufferedReader.readLine();
         } catch (Exception e) {
-            e.printStackTrace();
+            output.fileReadError();
             return null;
         }
     }
@@ -26,7 +27,7 @@ public class ParserService {
             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
             return bufferedWriter;
         } catch (Exception e) {
-            e.printStackTrace();
+            output.fileWriteError();
             return null;
         }
     }
@@ -38,7 +39,7 @@ public class ParserService {
             writer.flush();
             writer.close();
         } catch (IOException e) {
-            e.printStackTrace();
+            output.fileWriteError();
             return false;
         }
         return true;

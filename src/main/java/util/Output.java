@@ -2,7 +2,7 @@ package util;
 
 public class Output {
     public void description() {
-        System.out.println("Please choice  mode:\n 1 Find string in the file and count them\n 2 Find string in the file and replace them\n --------------------------------------------");
+        System.out.println("Please choice  mode:\n 1 Find string in the file and count them\n 2 Find string in the file and replace it\n --------------------------------------------");
     }
 
     public void wrongMode() {
@@ -19,6 +19,14 @@ public class Output {
 
     public void emptyFile() {
         System.out.println("File is empty");
+    }
+
+    public void fileReadError() {
+        System.out.println("Error with reading from file");
+    }
+
+    public void fileWriteError() {
+        System.out.println("Error with writing to file");
     }
 
     public void countString() {
