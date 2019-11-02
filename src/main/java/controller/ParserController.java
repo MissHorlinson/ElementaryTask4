@@ -5,6 +5,7 @@ import model.*;
 import java.io.*;
 
 public class ParserController {
+
     private Input         input = new Input();
     private Output        output = new Output();
     private Validator     validator = new Validator();
@@ -14,8 +15,8 @@ public class ParserController {
     public void run() throws IOException {
         output.fileName();
         model = new ParserModel(getFile());
-        if (validator.fileExist(model.getFile())) {
-            if(validator.emptyFile(model.getFile())) {
+        if (validator.isFileExist(model.getFile())) {
+            if(validator.isFileEmpty(model.getFile())) {
                 choiceMode();
             } else { output.fileError(); }
         } else { output.emptyFile(); }

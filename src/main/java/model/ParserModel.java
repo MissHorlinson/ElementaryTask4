@@ -3,6 +3,7 @@ package model;
 import java.io.File;
 
 public class ParserModel {
+
     private File file;
 
     public ParserModel() { }

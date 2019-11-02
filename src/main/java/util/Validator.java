@@ -1,11 +1,9 @@
 package util;
-
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.IOException;
 
 public class Validator {
-    public boolean fileExist(File file) {
+
+    public boolean isFileExist(File file) {
         if(file.exists() && file.isFile())
             return true;
         else
@@ -17,7 +15,7 @@ public class Validator {
             return content;
     }
 
-    public boolean emptyFile(File file) {
+    public boolean isFileEmpty(File file) {
         if(file.length() == 0) {
             return false;
         } else {
