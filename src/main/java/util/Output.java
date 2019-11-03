@@ -6,7 +6,7 @@ public class Output {
         System.out.println("Please choice  mode:\n 1 Find string in the file and count them\n 2 Find string in the file and replace it\n --------------------------------------------");
     }
 
-    public void wrongMode() {
+    public void nonexistentMode() {
         System.out.println("You select nonexistent mode. Please enter y - yes, if you want to try again");
     }
 

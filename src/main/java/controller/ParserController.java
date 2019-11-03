@@ -34,8 +34,8 @@ public class ParserController {
                 replace();
                 break;
             }
-            output.wrongMode();
-            if(!continueRequest(input.getString()))
+            output.nonexistentMode();
+            if(!shouldContinue())
                 break;
         }
     }
@@ -60,13 +60,7 @@ public class ParserController {
             output.replaceError();
     }
 
-    public boolean continueRequest(String answer) {
-        answer = answer.toUpperCase();
-        if(answer.equals("Y") || answer.equals("YES"))
-            return true;
-        else
-            return false;
+    public boolean shouldContinue() {
+        return validator.continueRequest(input.getString());
     }
-
-
 }
